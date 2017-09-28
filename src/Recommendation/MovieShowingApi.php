@@ -32,6 +32,9 @@ class MovieShowingApi implements MovieShowingApiInterface
      */
     public function fetchMovieShowings(): array
     {
+        // Note: This is simple and works fine but it could be replaced by eg Guzzle and injected through constructor
+        // Note: The way of reading from origin could be hidden behind another layer of abstraction using adapters 
+        // for SOAP, XLS, DB etc  but for purposes of this exercise I find this solution ok
         $json = file_get_contents($this->filename);
 
         $objects = json_decode($json);

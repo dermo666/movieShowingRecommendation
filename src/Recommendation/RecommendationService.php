@@ -42,6 +42,7 @@ class RecommendationService
             $showings = $movieShowing->getShowingsWithoutTimezone();
 
             foreach ($showings as $showing) {
+                // Note: This number could also be moved to config to make it configurable
                 if (strtotime($showing) - strtotime($time) >= -1800) {
                     $results[] = new RecommendationResult($movieShowing, $showing);
                     
@@ -51,7 +52,7 @@ class RecommendationService
         }
         
         if (count($results) > 1) {
-            usort($results, array($this, 'ratingSortingMethod'));
+            usort($results, [$this, 'ratingSortingMethod']);
         }
 
         return $results;

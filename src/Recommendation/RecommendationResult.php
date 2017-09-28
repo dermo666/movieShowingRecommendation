@@ -17,6 +17,12 @@ class RecommendationResult
      */
     private $showing;
     
+    /**
+     * Recommendation Result 
+     * 
+     * @param MovieShowing $movieShowing
+     * @param string $showing
+     */
     public function __construct(
         MovieShowing $movieShowing,
         string $showing

@@ -31,7 +31,6 @@ class RendererCliTest extends TestCase
      */
     protected function tearDown()
     {
-        // TODO Auto-generated RendererCliTest::tearDown()
         $this->rendererCli = null;
         
         parent::tearDown();
