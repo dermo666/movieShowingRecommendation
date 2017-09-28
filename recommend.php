@@ -6,8 +6,10 @@
 
 use Recommendation\RecommendationService;
 use Recommendation\MovieShowingApi;
+use Recommendation\RendererCli;
 
 require_once 'bootstrap.php';
+require_once 'config.php';
 
 $time = $argv[2] ?? '';
 $genre = $argv[4] ?? '';
@@ -17,13 +19,10 @@ if (!$time || !$genre) {
     exit; 
 }
 
-$api = new MovieShowingApi('https://pastebin.com/raw/cVyp3McN');
-
-$api->fetchMovieShowings();
+$api = new MovieShowingApi(CONFIG['apiPath']);
 
 $recomService = new RecommendationService($api);
 $results = $recomService->recommendMovies($genre, $time);
 
-var_dump($results);
-
-// TODO: Format result
+$renderer = new RendererCli();
+echo $renderer->renderResults($results);
