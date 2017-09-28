@@ -1,32 +1,32 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use Recommendation\MovieShowing;
+use Test\Recommendation\Mock\MovieShowingFixture;
+
+require_once __DIR__.'/Mock/MovieShowingFixture.php';
 
 /**
  * MovieShowing test case.
  */
 class MovieShowingTest extends TestCase
 {
-
-    private $fixture = [
-        'name' => 'Zootopia',
-        'rating' => 92,
-        'genres' => [
-            'Action & Adventure',
-            'Animation',
-            'Comedy'
-        ],
-        'showings' => [
-            '19:00:00+11:00',
-            '21:00:00+11:00'
-        ]
-    ];
+    public function setUp()
+    {
+        $this->showing1 = MovieShowingFixture::$showing1;
+    }
 
     public function testContainsGenreReturnsTrueIfShowingContainsGenre()
     {
-        $movieShowing = new MovieShowing($this->fixture['name'], $this->fixture['rating'], $this->fixture['genres'], $this->fixture['showings']);
+        $movieShowing = new MovieShowing($this->showing1['name'], $this->showing1['rating'], $this->showing1['genres'], $this->showing1['showings']);
         
         $this->assertTrue($movieShowing->containsGenre('Animation')); 
+    }
+    
+    public function testContainsGenreReturnsFalseIfShowingDoesNotContainGenre()
+    {
+        $movieShowing = new MovieShowing($this->showing1['name'], $this->showing1['rating'], $this->showing1['genres'], $this->showing1['showings']);
+        
+        $this->assertFalse($movieShowing->containsGenre('Horror'));
     }
 }
 

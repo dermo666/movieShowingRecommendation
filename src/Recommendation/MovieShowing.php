@@ -2,6 +2,9 @@
 
 namespace Recommendation;
 
+/**
+ * Movie Showing Value Object
+ */
 class MovieShowing
 {
     
@@ -29,4 +32,30 @@ class MovieShowing
     {
         return in_array($genre, $this->genres);
     }
+    
+    public function getShowings(): array
+    {
+        return $this->showings;
+    }
+    
+    public function getShowingsWithoutTimezone(): array
+    {
+        $result = [];
+        
+        foreach ($this->showings as $showing) {
+            $result[] = substr($showing, 0, 5);
+        }
+        return $result;
+    }
+    
+    public function getRating(): int
+    {
+        return $this->rating;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
 }
