@@ -7,15 +7,34 @@ namespace Recommendation;
  */
 class MovieShowing
 {
-    
+    /**
+     * @var string
+     */
     private $name;
-    
+
+    /**
+     * @var string
+     */
     private $rating;
-    
+
+    /**
+     * @var array
+     */
     private $genres;
-    
+
+    /**
+     * @var array
+     */
     private $showings;
     
+    /**
+     * Constructor
+     * 
+     * @param string $name
+     * @param string $rating
+     * @param array $genres
+     * @param array $showings
+     */
     public function __construct(
         string $name,
         string $rating,
@@ -28,16 +47,33 @@ class MovieShowing
         $this->showings = $showings;
     }
 
+    /**
+     * Contains Genre
+     * 
+     * @param string $genre
+     * 
+     * @return bool
+     */
     public function containsGenre(string $genre): bool
     {
         return in_array($genre, $this->genres);
     }
     
+    /**
+     * Get Showings
+     * 
+     * @return array
+     */
     public function getShowings(): array
     {
         return $this->showings;
     }
     
+    /**
+     * Get Showings Without Timezone (from 18:30:00+11:00 to 18:30)
+     * 
+     * @return array
+     */
     public function getShowingsWithoutTimezone(): array
     {
         $result = [];
@@ -48,12 +84,22 @@ class MovieShowing
         return $result;
     }
     
+    /**
+     * Get Rating
+     * 
+     * @return int
+     */
     public function getRating(): int
     {
         return $this->rating;
     }
 
-    public function getName()
+    /**
+     * Get Name
+     *  
+     * @return string
+     */
+    public function getName(): string
     {
         return $this->name;
     }

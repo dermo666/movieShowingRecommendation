@@ -35,9 +35,9 @@ class RecommendationService
     {
         $movieShowings = $this->api->getMovieShowingsByGenre($genre);
         
-        // filter by time
         $results = [];
         
+        // Find all movie showing that have a showing time 30 minutes ahead of the input time
         foreach ($movieShowings as $movieShowing) {
             $showings = $movieShowing->getShowingsWithoutTimezone();
 

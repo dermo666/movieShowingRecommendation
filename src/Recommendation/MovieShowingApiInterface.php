@@ -3,11 +3,16 @@ namespace Recommendation;
 
 interface MovieShowingApiInterface
 {
-    
+
+    /**
+     * Fetch Movie Showings
+     *
+     * @return MovieShowing[]
+     */
     public function fetchMovieShowings(): array;
     
     /**
-     * Get Movie Showing By Genre
+     * Get Movie Showings By Genre
      * 
      * @param string $genre
      * @return MovieShowing[]
